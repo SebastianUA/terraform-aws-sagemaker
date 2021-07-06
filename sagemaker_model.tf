@@ -10,7 +10,7 @@ resource "aws_sagemaker_model" "sagemaker_model" {
   enable_network_isolation = var.sagemaker_model_enable_network_isolation
 
   dynamic "primary_container" {
-    for_each = tolist(var.sagemaker_model_primary_container)
+    for_each = var.sagemaker_model_primary_container
     content {
       image = lookup(primary_container.value, "image", null)
 
@@ -21,7 +21,7 @@ resource "aws_sagemaker_model" "sagemaker_model" {
   }
 
   dynamic "container" {
-    for_each = tolist(var.sagemaker_model_container)
+    for_each = var.sagemaker_model_container
     content {
       image = lookup(container.value, "image", null)
 
@@ -32,7 +32,7 @@ resource "aws_sagemaker_model" "sagemaker_model" {
   }
 
   dynamic "vpc_config" {
-    for_each = tolist(var.sagemaker_model_vpc_config)
+    for_each = var.sagemaker_model_vpc_config
     content {
       subnets            = lookup(vpc_config.value, "subnets", null)
       security_group_ids = lookup(vpc_config.value, "security_group_ids", null)

@@ -26,6 +26,7 @@ variable "enable_sagemaker_model" {
 }
 
 variable "sagemaker_model_name" {
+  type        = string
   description = "The name of the model (must be unique). If omitted, Terraform will assign a random, unique name."
   default     = ""
 }
@@ -67,6 +68,7 @@ variable "enable_sagemaker_endpoint_configuration" {
 }
 
 variable "sagemaker_endpoint_configuration_name" {
+  type        = string
   description = "The name of the endpoint configuration. If omitted, Terraform will assign a random, unique name."
   default     = ""
 }
@@ -96,6 +98,7 @@ variable "sagemaker_endpoint_name" {
 }
 
 variable "sagemaker_endpoint_endpoint_config_name" {
+  type        = string
   description = "The name of the endpoint configuration to use."
   default     = ""
 }
@@ -132,6 +135,7 @@ variable "enable_sagemaker_notebook_instance" {
 }
 
 variable "sagemaker_notebook_instance_name" {
+  type        = string
   description = "The name of the notebook instance (must be unique)."
   default     = ""
 }
@@ -142,6 +146,7 @@ variable "sagemaker_notebook_instance_role_arn" {
 }
 
 variable "sagemaker_notebook_instance_instance_type" {
+  type        = string
   description = "(Required) The name of ML compute instance type."
   default     = "ml.t2.medium"
 }
@@ -180,11 +185,13 @@ variable "enable_sagemaker_user_profile" {
 }
 
 variable "sagemaker_user_profile_name" {
+  type        = string
   description = "The name for the User Profile."
   default     = ""
 }
 
 variable "sagemaker_user_profile_domain_id" {
+  type        = string
   description = "The ID of the associated Domain."
   default     = ""
 }
@@ -203,27 +210,30 @@ variable "sagemaker_user_profile_user_settings" {
   description = "AAA"
   default = {
     execution_role = null
-
     security_groups = null
   }
 }
 
 variable "sagemaker_user_profile_sharing_settings" {
+  type        = list
   description = "(Optional) The sharing settings."
   default     = []
 }
 
 variable "sagemaker_user_profile_tensor_board_app_settings" {
+  type        = list
   description = "(Optional) The TensorBoard app settings."
   default     = []
 }
 
 variable "sagemaker_user_profile_jupyter_server_app_settings" {
+  type        = list
   description = "(Optional) The Jupyter server's app settings."
   default     = []
 }
 
 variable "sagemaker_user_profile_kernel_gateway_app_settings" {
+  type        = list
   description = "(Optional) The kernel gateway app settings."
   default     = []
 }
@@ -237,6 +247,7 @@ variable "enable_sagemaker_domain" {
 }
 
 variable "sagemaker_domain_name" {
+  type        = string
   description = "The domain name."
   default     = ""
 }
@@ -270,27 +281,30 @@ variable "sagemaker_domain_default_user_settings" {
   description = "(Required) The default user settings."
   default = {
     execution_role = null
-
     security_groups = null
   }
 }
 
 variable "sagemaker_domain_sharing_settings" {
+  type        = list
   description = "(Optional) The sharing settings. "
   default     = []
 }
 
 variable "sagemaker_domain_tensor_board_app_settings" {
+  type        = list
   description = "(Optional) The TensorBoard app settings."
   default     = []
 }
 
 variable "sagemaker_domain_jupyter_server_app_settings" {
+  type        = list
   description = "(Optional) The Jupyter server's app settings."
   default     = []
 }
 
 variable "sagemaker_domain_kernel_gateway_app_settings" {
+  type        = list
   description = "(Optional) The kernel gateway app settings."
   default     = []
 }
@@ -304,6 +318,7 @@ variable "enable_sagemaker_model_package_group" {
 }
 
 variable "sagemaker_model_package_group_name" {
+  type        = string
   description = "The name of the model group."
   default     = ""
 }
@@ -322,6 +337,7 @@ variable "enable_sagemaker_image" {
 }
 
 variable "sagemaker_image_name" {
+  type        = string
   description = "The name of the image. Must be unique to your account."
   default     = ""
 }
@@ -350,6 +366,7 @@ variable "enable_sagemaker_image_version" {
 }
 
 variable "sagemaker_image_version_image_name" {
+  type        = string
   description = "The name of the image. Must be unique to your account."
   default     = ""
 }
@@ -368,16 +385,19 @@ variable "enable_sagemaker_feature_group" {
 }
 
 variable "sagemaker_feature_group_name" {
+  type        = string
   description = "The name of the Feature Group. The name must be unique within an AWS Region in an AWS account."
   default     = ""
 }
 
 variable "sagemaker_feature_group_record_identifier_feature_name" {
+  type        = string
   description = "The name of the Feature whose value uniquely identifies a Record defined in the Feature Store. Only the latest record per identifier value will be stored in the Online Store."
   default     = ""
 }
 
 variable "sagemaker_feature_group_event_time_feature_name" {
+  type        = string
   description = "The name of the feature that stores the EventTime of a Record in a Feature Group."
   default     = ""
 }
@@ -393,21 +413,25 @@ variable "sagemaker_feature_group_description" {
 }
 
 variable "sagemaker_feature_group_feature_definition" {
+  type        = list
   description = "(Optional) - A list of Feature names and types."
   default     = []
 }
 
 variable "sagemaker_feature_group_s3_storage_config" {
+  type        = list
   description = "(Required) The Amazon Simple Storage (Amazon S3) location of OfflineStore."
   default     = []
 }
 
 variable "sagemaker_feature_group_data_catalog_config" {
+  type        = list
   description = "(Optional) The meta data of the Glue table that is autogenerated when an OfflineStore is created."
   default     = []
 }
 
 variable "sagemaker_feature_group_security_config" {
+  type        = list
   description = "(Required) Security config for at-rest encryption of your OnlineStore."
   default     = []
 }
@@ -421,11 +445,13 @@ variable "enable_sagemaker_code_repository" {
 }
 
 variable "sagemaker_code_repository_name" {
+  type        = string
   description = "The name of the Code Repository (must be unique)."
   default     = ""
 }
 
 variable "sagemaker_code_repository_git_config" {
+  type        = list
   description = "(Required) Specifies details about the repository."
   default     = []
 }
@@ -439,16 +465,19 @@ variable "enable_sagemaker_app_image_config" {
 }
 
 variable "sagemaker_app_image_config_name" {
+  type        = string
   description = "The name of the App Image Config."
   default     = ""
 }
 
 variable "sagemaker_app_image_config_kernel_spec" {
+  type        = list
   description = "(Required) The default branch for the Git repository."
   default     = []
 }
 
 variable "sagemaker_app_image_config_file_system_config" {
+  type        = list
   description = "(Optional) The URL where the Git repository is located."
   default     = []
 }
