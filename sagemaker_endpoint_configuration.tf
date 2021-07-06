@@ -9,7 +9,6 @@ resource "aws_sagemaker_endpoint_configuration" "sagemaker_endpoint_configuratio
   kms_key_arn = var.sagemaker_endpoint_configuration_kms_key_arn
 
   dynamic "production_variants" {
-    iterator = production_variants
     for_each = var.sagemaker_endpoint_configuration_production_variants
     content {
       model_name             = lookup(production_variants.value, "model_name", element(concat(aws_sagemaker_model.sagemaker_model.*.name, [""]), 0))
