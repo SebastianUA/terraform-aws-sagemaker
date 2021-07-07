@@ -41,16 +41,19 @@ variable "sagemaker_model_enable_network_isolation" {
 }
 
 variable "sagemaker_model_vpc_config" {
+  type        = list
   description = "(Optional) - Specifies the VPC that you want your model to connect to. VpcConfig is used in hosting services and in batch transform."
   default     = []
 }
 
 variable "sagemaker_model_primary_container" {
+  type        = list
   description = "(Optional) The primary docker image containing inference code that is used when the model is deployed for predictions. If not specified, the container argument is required. "
   default     = []
 }
 
 variable "sagemaker_model_container" {
+  type        = list
   description = "(Optional) - Specifies containers in the inference pipeline. If not specified, the primary_container argument is required."
   default     = []
 }
@@ -74,6 +77,7 @@ variable "sagemaker_endpoint_configuration_kms_key_arn" {
 }
 
 variable "sagemaker_endpoint_configuration_production_variants" {
+  type        = list
   description = "(Required) Fields for endpoint"
   default     = []
 }
