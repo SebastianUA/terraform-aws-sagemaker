@@ -1,10 +1,10 @@
 #---------------------------------------------------
-# AWS Sagemaker user profile
+# AWS Sagemaker user profile 
 #---------------------------------------------------
 resource "aws_sagemaker_user_profile" "sagemaker_user_profile" {
   count = var.enable_sagemaker_user_profile ? 1 : 0
 
-  user_profile_name         = var.sagemaker_user_profile_name != "" ? lower(var.sagemaker_user_profile_name) : "${lower(var.name)}-sagemaker-user-profile-${lower(var.environment)}"
+  user_profile_name         = var.sagemaker_user_profile_name != "" ? lower(var.sagemaker_user_profile_name) : "${lower(var.name)}-user-profile-${lower(var.environment)}"
   domain_id                 = var.sagemaker_user_profile_domain_id != "" ? var.sagemaker_user_profile_domain_id : (var.enable_sagemaker_domain ? aws_sagemaker_domain.sagemaker_domain.0.id : null)
   single_sign_on_user_value = var.sagemaker_user_profile_single_sign_on_user_value
 
@@ -17,7 +17,8 @@ resource "aws_sagemaker_user_profile" "sagemaker_user_profile" {
 
     dynamic "sharing_settings" {
       iterator = sharing_settings
-      for_each = var.sagemaker_user_profile_sharing_settings
+      for_each = lookup(var.sagemaker_user_profile_user_settings, "sharing_settings", [])
+
       content {
         notebook_output_option = lookup(sharing_settings.value, "notebook_output_option", null)
         s3_kms_key_id          = lookup(sharing_settings.value, "s3_kms_key_id", null)
@@ -27,39 +28,63 @@ resource "aws_sagemaker_user_profile" "sagemaker_user_profile" {
 
     dynamic "tensor_board_app_settings" {
       iterator = tensor_board_app_settings
-      for_each = var.sagemaker_user_profile_tensor_board_app_settings
+      for_each = lookup(var.sagemaker_user_profile_user_settings, "tensor_board_app_settings", [])
+
       content {
-        default_resource_spec {
-          instance_type       = lookup(tensor_board_app_settings.value, "instance_type", null)
-          sagemaker_image_arn = lookup(tensor_board_app_settings.value, "sagemaker_image_arn", null)
+        dynamic "default_resource_spec" {
+          iterator = default_resource_spec
+          for_each = lookup(tensor_board_app_settings.value, "default_resource_spec", [])
+
+          content {
+            instance_type       = lookup(default_resource_spec.value, "instance_type", null)
+            sagemaker_image_arn = lookup(default_resource_spec.value, "sagemaker_image_arn", null)
+          }
         }
       }
     }
 
     dynamic "jupyter_server_app_settings" {
       iterator = jupyter_server_app_settings
-      for_each = var.sagemaker_user_profile_jupyter_server_app_settings
+      for_each = lookup(var.sagemaker_user_profile_user_settings, "jupyter_server_app_settings", [])
+
       content {
-        default_resource_spec {
-          instance_type       = lookup(jupyter_server_app_settings.value, "instance_type", null)
-          sagemaker_image_arn = lookup(jupyter_server_app_settings.value, "sagemaker_image_arn", null)
+        dynamic "default_resource_spec" {
+          iterator = default_resource_spec
+          for_each = lookup(jupyter_server_app_settings.value, "default_resource_spec", [])
+
+          content {
+            instance_type       = lookup(default_resource_spec.value, "instance_type", null)
+            sagemaker_image_arn = lookup(default_resource_spec.value, "sagemaker_image_arn", null)
+          }
         }
       }
     }
 
     dynamic "kernel_gateway_app_settings" {
       iterator = kernel_gateway_app_settings
-      for_each = var.sagemaker_user_profile_kernel_gateway_app_settings
-      content {
-        default_resource_spec {
-          instance_type       = lookup(kernel_gateway_app_settings.value, "instance_type", null)
-          sagemaker_image_arn = lookup(kernel_gateway_app_settings.value, "sagemaker_image_arn", null)
-        }
-        custom_image {
-          app_image_config_name = lookup(kernel_gateway_app_settings.value, "app_image_config_name", null)
-          image_name            = lookup(kernel_gateway_app_settings.value, "image_name", null)
+      for_each = lookup(var.sagemaker_user_profile_user_settings, "kernel_gateway_app_settings", [])
 
-          image_version_number = lookup(kernel_gateway_app_settings.value, "image_version_number", null)
+      content {
+        dynamic "default_resource_spec" {
+          iterator = default_resource_spec
+          for_each = lookup(kernel_gateway_app_settings.value, "default_resource_spec", [])
+
+          content {
+            instance_type       = lookup(default_resource_spec.value, "instance_type", null)
+            sagemaker_image_arn = lookup(default_resource_spec.value, "sagemaker_image_arn", null)
+          }
+        }
+
+        dynamic "custom_image" {
+          iterator = custom_image
+          for_each = lookup(kernel_gateway_app_settings.value, "custom_image", [])
+
+          content {
+            app_image_config_name = lookup(custom_image.value, "app_image_config_name", null)
+            image_name            = lookup(custom_image.value, "image_name", null)
+
+            image_version_number = lookup(custom_image.value, "image_version_number", null)
+          }
         }
       }
     }
@@ -68,7 +93,7 @@ resource "aws_sagemaker_user_profile" "sagemaker_user_profile" {
 
   tags = merge(
     {
-      Name = var.sagemaker_user_profile_name != "" ? lower(var.sagemaker_user_profile_name) : "${lower(var.name)}-sagemaker-user-profile-${lower(var.environment)}"
+      Name = var.sagemaker_user_profile_name != "" ? lower(var.sagemaker_user_profile_name) : "${lower(var.name)}-user-profile-${lower(var.environment)}"
     },
     var.tags
   )

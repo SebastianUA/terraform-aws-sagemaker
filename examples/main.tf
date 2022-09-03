@@ -2,12 +2,16 @@
 # MAINTAINER Vitaliy Natarov "vitaliy.natarov@yahoo.com"
 #
 terraform {
-  required_version = "~> 0.13"
+  required_version = "~> 1.0"
 }
 
 provider "aws" {
   region                  = "us-east-1"
   shared_credentials_file = pathexpand("~/.aws/credentials")
+}
+
+# Get the usera and account information
+data "aws_caller_identity" "current" {
 }
 
 module "sagemaker" {
@@ -18,10 +22,10 @@ module "sagemaker" {
   # Sagemaker model
   enable_sagemaker_model             = true
   sagemaker_model_name               = ""
-  sagemaker_model_execution_role_arn = "arn:aws:iam::167127734783:role/admin-role"
+  sagemaker_model_execution_role_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/admin-role"
 
   sagemaker_model_primary_container = [{
-    image = "167127734783.dkr.ecr.us-east-1.amazonaws.com/sagemaker-sparkml-serving"
+    image = "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/sagemaker-sparkml-serving"
   }]
   sagemaker_model_container = []
 
@@ -47,7 +51,7 @@ module "sagemaker" {
   # Sagemaker notebook instance
   enable_sagemaker_notebook_instance        = true
   sagemaker_notebook_instance_name          = ""
-  sagemaker_notebook_instance_role_arn      = "arn:aws:iam::167127734783:role/admin-role"
+  sagemaker_notebook_instance_role_arn      = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/admin-role"
   sagemaker_notebook_instance_instance_type = "ml.t2.medium"
 
   sagemaker_notebook_instance_subnet_id              = null
@@ -55,5 +59,9 @@ module "sagemaker" {
   sagemaker_notebook_instance_kms_key_id             = null
   sagemaker_notebook_instance_direct_internet_access = null
 
-  tags = map("Env", "dev", "Orchestration", "Terraform", "Createdby", "Vitalii Natarov")
+  tags = tomap({
+    "Environment"   = "dev",
+    "Createdby"     = "Vitaliy Natarov",
+    "Orchestration" = "Terraform"
+  })
 }
