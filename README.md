@@ -107,6 +107,8 @@ module "sagemaker" {
 - `sagemaker_notebook_instance_name` - The name of the notebook instance (must be unique). (`default = ""`)
 - `sagemaker_notebook_instance_role_arn` - (Required) The ARN of the IAM role to be used by the notebook instance which allows SageMaker to call other services on your behalf. (`default = null`)
 - `sagemaker_notebook_instance_instance_type` - (Required) The name of ML compute instance type. (`default = ml.t2.medium`)
+- `sagemaker_notebook_instance_platform_identifier` - (Optional) The platform identifier of the notebook instance runtime environment. This value can be either notebook-al1-v1, notebook-al2-v1, or notebook-al2-v2, depending on which version of Amazon Linux you require. (`default = null`)
+- `sagemaker_notebook_instance_volume_size` - (Optional) The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB. (`default = null`)
 - `sagemaker_notebook_instance_subnet_id` - (Optional) The VPC subnet ID. (`default = null`)
 - `sagemaker_notebook_instance_security_groups` - (Optional) The associated security groups. (`default = null`)
 - `sagemaker_notebook_instance_kms_key_id` - (Optional) The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. (`default = null`)

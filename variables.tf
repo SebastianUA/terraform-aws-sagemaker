@@ -142,6 +142,16 @@ variable "sagemaker_notebook_instance_instance_type" {
   default     = "ml.t2.medium"
 }
 
+variable "sagemaker_notebook_instance_platform_identifier" {
+  description = "(Optional) The platform identifier of the notebook instance runtime environment. This value can be either notebook-al1-v1, notebook-al2-v1, or notebook-al2-v2, depending on which version of Amazon Linux you require."
+  default     = null
+}
+
+variable "sagemaker_notebook_instance_volume_size" {
+  description = "(Optional) The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB."
+  default     = null
+}
+
 variable "sagemaker_notebook_instance_subnet_id" {
   description = "(Optional) The VPC subnet ID."
   default     = null
