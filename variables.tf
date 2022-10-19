@@ -484,12 +484,12 @@ variable "enable_sagemaker_device" {
   default     = false
 }
 
-variable "sagemaker_device_fleet_name" {
-  description = "The name of the Device Fleet."
+variable "sagemaker_device_device_fleet_name" {
+  description = "The name of the Device."
   default     = ""
 }
 
-variable "sagemaker_device_fleet_role_arn" {
+variable "sagemaker_device_role_arn" {
   description = "(Required) The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT)."
   default     = null
 }
