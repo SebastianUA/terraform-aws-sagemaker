@@ -489,11 +489,6 @@ variable "sagemaker_device_device_fleet_name" {
   default     = ""
 }
 
-variable "sagemaker_device_role_arn" {
-  description = "(Required) The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT)."
-  default     = null
-}
-
 variable "sagemaker_device_devices" {
   description = "(Required) The list of devices to register with SageMaker Edge Manager."
   default     = []

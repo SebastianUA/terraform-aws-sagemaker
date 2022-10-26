@@ -5,7 +5,6 @@ resource "aws_sagemaker_device" "sagemaker_device" {
   count = var.enable_sagemaker_device ? 1 : 0
 
   device_fleet_name = var.sagemaker_device_device_fleet_name != "" ? var.sagemaker_device_device_fleet_name : (var.enable_sagemaker_device_fleet ? aws_sagemaker_device_fleet.sagemaker_device_fleet[count.index].device_fleet_name : null)
-  role_arn          = var.sagemaker_device_role_arn
 
   dynamic "device" {
     iterator = device
