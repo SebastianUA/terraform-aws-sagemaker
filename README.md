@@ -4,8 +4,8 @@ A terraform module for making Sagemaker.
 
 *NOTE*: Full list of Terraform modules that I have are located here: [https://github.com/SebastianUA/terraform](https://github.com/SebastianUA/terraform)
 
-
 ## Usage
+
 ----------------------
 Import the module and retrieve with ```terraform get``` or ```terraform get --update```. Adding a module resource to your template, e.g. `main.tf`:
 
@@ -81,7 +81,9 @@ module "sagemaker" {
 ```
 
 ## Module Input Variables
+
 ----------------------
+
 - `name` - Name to be used on all resources as prefix (`default = TEST`)
 - `environment` - Environment for service (`default = STAGE`)
 - `tags` - A list of tag blocks. Each element should have keys named key, value, etc. (`default = {}`)
@@ -168,7 +170,6 @@ module "sagemaker" {
 - `sagemaker_device_fleet_output_config` - (Required) Specifies details about the repository. (`default = []`)
 - `enable_sagemaker_device` - Enable sagemaker device usage (`default = False`)
 - `sagemaker_device_device_fleet_name` - The name of the Device. (`default = ""`)
-- `sagemaker_device_role_arn` - (Required) The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT). (`default = null`)
 - `sagemaker_device_devices` - (Required) The list of devices to register with SageMaker Edge Manager. (`default = []`)
 - `enable_sagemaker_model_package_group_policy` - Enable sagemaker model package group policy usage (`default = False`)
 - `sagemaker_model_package_group_policy_model_package_group_name` - The name of the model package group. (`default = ""`)
@@ -204,7 +205,9 @@ module "sagemaker" {
 - `sagemaker_human_task_ui_template` - (Required) The Liquid template for the worker user interface. (`default = []`)
 
 ## Module Output Variables
+
 ----------------------
+
 - `sagemaker_model_id` - The ID of sagemaker model
 - `sagemaker_model_name` - The name of the model.
 - `sagemaker_model_arn` - The Amazon Resource Name (ARN) assigned by AWS to this model.
@@ -264,7 +267,6 @@ module "sagemaker" {
 - `sagemaker_human_task_ui_id` - The name of the Human Task UI.
 - `sagemaker_human_task_ui_arn` - The Amazon Resource Name (ARN) assigned by AWS to this Human Task UI.
 - `sagemaker_human_task_ui_template` - The Liquid template for the worker user interface
-
 
 ## Authors
 
