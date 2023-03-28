@@ -140,7 +140,6 @@ module "sagemaker" {
 - `sagemaker_image_version_image_name` - The name of the image. Must be unique to your account. (`default = ""`)
 - `sagemaker_image_version_base_image` - (Required) The registry path of the container image on which this image version is based. (`default = null`)
 - `enable_sagemaker_feature_group` - Enable sagemaker feature group usage (`default = False`)
-- `sagemaker_feature_group_name` - The name of the Feature Group. The name must be unique within an AWS Region in an AWS account. (`default = ""`)
 - `sagemaker_feature_group_record_identifier_feature_name` - The name of the Feature whose value uniquely identifies a Record defined in the Feature Store. Only the latest record per identifier value will be stored in the Online Store. (`default = ""`)
 - `sagemaker_feature_group_event_time_feature_name` - The name of the feature that stores the EventTime of a Record in a Feature Group. (`default = ""`)
 - `sagemaker_feature_group_role_arn` - (Required) - The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the Offline Store if an offline_store_config is provided. (`default = null`)
