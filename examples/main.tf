@@ -15,7 +15,7 @@ data "aws_caller_identity" "current" {
 }
 
 module "sagemaker" {
-  source      = "../../modules/sagemaker"
+  source      = "../"
   name        = "TEST"
   environment = "stage"
 
