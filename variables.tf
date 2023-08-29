@@ -336,8 +336,6 @@ variable "sagemaker_domain_settings" {
   default     = []
 }
 
-
-
 #---------------------------------------------------
 # AWS sagemaker model package group
 #---------------------------------------------------
