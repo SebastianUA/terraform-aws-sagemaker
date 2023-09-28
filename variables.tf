@@ -189,6 +189,7 @@ variable "sagemaker_notebook_instance_subnet_id" {
 
 variable "sagemaker_notebook_instance_security_groups" {
   description = "(Optional) The associated security groups."
+  type        = list(string)
   default     = null
 }
 
