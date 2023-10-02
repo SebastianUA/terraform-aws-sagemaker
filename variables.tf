@@ -466,8 +466,8 @@ variable "sagemaker_code_repository_name" {
 
 variable "sagemaker_code_repository_git_config" {
   description = "(Required) Specifies details about the repository."
-  type = map(any)
-  default     = {}
+  type = list(map(string))
+  default     = []
 }
 
 
