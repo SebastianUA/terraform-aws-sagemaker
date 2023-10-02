@@ -10,7 +10,7 @@ resource "aws_sagemaker_user_profile" "sagemaker_user_profile" {
 
   single_sign_on_user_identifier = var.sagemaker_user_profile_single_sign_on_user_identifier
 
-  dynamic "default_user_settings" {
+  dynamic "user_settings" {
     iterator = default_user_settings
     for_each = length(keys(var.sagemaker_user_profile_user_settings)) > 0 ? [var.sagemaker_domain_default_user_settings] : []
 
