@@ -189,6 +189,7 @@ variable "sagemaker_notebook_instance_subnet_id" {
 
 variable "sagemaker_notebook_instance_security_groups" {
   description = "(Optional) The associated security groups."
+  type = list(string)
   default     = null
 }
 
@@ -453,16 +454,19 @@ variable "sagemaker_feature_group_online_store_config" {
 #---------------------------------------------------
 variable "enable_sagemaker_code_repository" {
   description = "Enable sagemaker code repository usage"
+  type = bool
   default     = false
 }
 
 variable "sagemaker_code_repository_name" {
   description = "The name of the Code Repository (must be unique)."
+  type = string
   default     = ""
 }
 
 variable "sagemaker_code_repository_git_config" {
   description = "(Required) Specifies details about the repository."
+  type = map(any)
   default     = []
 }
 
