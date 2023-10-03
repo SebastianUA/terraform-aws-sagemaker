@@ -3,11 +3,13 @@
 #-----------------------------------------------------------
 variable "name" {
   description = "Name to be used on all resources as prefix"
+  type = string
   default     = "TEST"
 }
 
 variable "environment" {
   description = "Environment for service"
+  type = string
   default     = "STAGE"
 }
 
@@ -22,16 +24,19 @@ variable "tags" {
 #---------------------------------------------------
 variable "enable_sagemaker_model" {
   description = "Enable sagemaker model usage"
+  type = bool
   default     = false
 }
 
 variable "sagemaker_model_name" {
   description = "The name of the model (must be unique). If omitted, Terraform will assign a random, unique name."
+  type = string
   default     = ""
 }
 
 variable "sagemaker_model_execution_role_arn" {
   description = "(Required) A role that SageMaker can assume to access model artifacts and docker images for deployment."
+  type = string
   default     = null
 }
 
