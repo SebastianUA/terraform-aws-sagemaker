@@ -224,7 +224,7 @@ variable "sagemaker_notebook_instance_default_code_repository" {
 
 variable "sagemaker_notebook_instance_root_access" {
   description = "(Optional) Whether root access is Enabled or Disabled for users of the notebook instance. The default value is Enabled"
-  type = bool
+  type = string
   default     = null
 }
 
