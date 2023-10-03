@@ -159,36 +159,43 @@ variable "sagemaker_notebook_instance_lifecycle_configuration_on_start" {
 #---------------------------------------------------
 variable "enable_sagemaker_notebook_instance" {
   description = "Enable sagemaker notebook instance usage"
+  type = bool
   default     = false
 }
 
 variable "sagemaker_notebook_instance_name" {
   description = "The name of the notebook instance (must be unique)."
+  type = string
   default     = ""
 }
 
 variable "sagemaker_notebook_instance_role_arn" {
   description = "(Required) The ARN of the IAM role to be used by the notebook instance which allows SageMaker to call other services on your behalf."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_instance_type" {
   description = "(Required) The name of ML compute instance type."
+  type = string
   default     = "ml.t2.medium"
 }
 
 variable "sagemaker_notebook_instance_platform_identifier" {
   description = "(Optional) The platform identifier of the notebook instance runtime environment. This value can be either notebook-al1-v1, notebook-al2-v1, or notebook-al2-v2, depending on which version of Amazon Linux you require."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_volume_size" {
   description = "(Optional) The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_subnet_id" {
   description = "(Optional) The VPC subnet ID."
+  type = string
   default     = null
 }
 
@@ -205,31 +212,37 @@ variable "sagemaker_notebook_instance_accelerator_types" {
 
 variable "sagemaker_notebook_instance_additional_code_repositories" {
   description = "(Optional) An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in AWS CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance."
+  type = list(string)
   default     = null
 }
 
 variable "sagemaker_notebook_instance_default_code_repository" {
   description = "(Optional) The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in AWS CodeCommit or in any other Git repository."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_root_access" {
   description = "(Optional) Whether root access is Enabled or Disabled for users of the notebook instance. The default value is Enabled"
+  type = bool
   default     = null
 }
 
 variable "sagemaker_notebook_instance_kms_key_id" {
   description = "(Optional) The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_lifecycle_config_name" {
   description = "(Optional) The name of a lifecycle configuration to associate with the notebook instance."
+  type = string
   default     = null
 }
 
 variable "sagemaker_notebook_instance_direct_internet_access" {
   description = "(Optional) Set to Disabled to disable internet access to notebook. Requires security_groups and subnet_id to be set. Supported values: Enabled (Default) or Disabled. If set to Disabled, the notebook instance will be able to access resources only in your VPC, and will not be able to connect to Amazon SageMaker training and endpoint services unless your configure a NAT Gateway in your VPC."
+  type = string
   default     = null
 }
 
@@ -243,6 +256,7 @@ variable "sagemaker_notebook_instance_instance_metadata_service_configuration" {
 #---------------------------------------------------
 variable "enable_sagemaker_user_profile" {
   description = "Enable sagemaker user profile usage"
+  type = bool
   default     = false
 }
 
